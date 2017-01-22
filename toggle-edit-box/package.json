@@ -1,26 +1,28 @@
 {
-  "name": "box-component",
-  "namelower": "box-component",
+  "name": "collapse-edit-box",
+  "namelower": "collapse-edit-box",
   "version": "0.0.1",
-  "description": "An box-component AngularJS project",
+  "description": "An collapse-edit-box AngularJS project",
   "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/rachidourich/angular-bootstrap-components.git"
-  },  
+  },
   "devDependencies": {
-    "grunt": "0.4.2",
-    "grunt-contrib-concat":     "0.3.0",
-    "grunt-contrib-copy":       "0.5.0",
-    "grunt-contrib-jshint":     "0.8.0",
-    "grunt-contrib-nodeunit":   "0.3.0",
-    "grunt-contrib-uglify":     "0.2.2",
-    "grunt-contrib-watch":      "0.5.3",
-    "grunt-jsdoc":              "0.5.4",
-    "grunt-exec":               "0.4.5",
-    "grunt-karma":              "0.8.3"
-  },  
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-cli": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-less": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-rename": "latest"
+  },
   "scripts": {
-    "dev-dep": "bower install"
+    "env-dep" : "npm install --verbose", 
+    "dev-dep": "bower install --verbose",
+    "view": "gulp"
   }
 }
