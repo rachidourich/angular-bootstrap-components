@@ -11,5 +11,7 @@
 
 
 # components
-##Toggle-edit-box
+##collapse-edit-box
 Here the description of the component
+Demo:
+![collapse-edit-box](images/collapse-edit-box.gif)

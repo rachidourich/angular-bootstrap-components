@@ -1,10 +1,63 @@
+<!doctype html>
 <html>
-   <title>Collapsable and editable box</title>
+
 <head>
+   <title>Collapsable and editable box</title>
+
+   <link rel="stylesheet" href="css/collapse-edit-box.css">
+   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+   <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
+
+   <script src="/bower_components/angular/angular.js"></script>
+   <script src="js/collapse-edit-box.js"></script>
+
 </head>
 
-<body>
-   Hello world     
-    
+<body ng-app="collapseEditBoxApp" ng-controller="collapseEditBoxController">
+
+
+   <div ng-init="boxFullDisplay = true" ></div>
+   <div ng-init="boxEditMode = false" ></div>
+
+      <div class="col-lg-12 collapse-edit-box">
+         <div class="ceb-header">
+            <span class="col-lg-11"><h4>Collapse edit box</h4></span>
+            <span class="col-lg-1 ceb-controls ">
+               <span class="glyphicon" ng-class="boxEditMode ? 'glyphicon-circle-arrow-left' : 'glyphicon-edit'"
+                ng-click="boxEditMode=!boxEditMode; boxFullDisplay=true" />
+            </span>
+         </div>
+         <div class="col-lg-12 lbody animated" 
+         ng-class="{'fadeIn': boxFullDisplay, 'fadeInDown' : !boxFullDisplay}"
+         ng-show="boxFullDisplay" >
+            <span class="ico glyphicon glyphicon-bell" ></span>
+            <span class="ico glyphicon glyphicon-tasks" ></span>
+            <span class="ico glyphicon glyphicon-usd" ></span>
+            <span class="ico glyphicon glyphicon-sort-by-attributes-alt" ></span>
+            <span class="ico glyphicon glyphicon-floppy-disk" ></span>
+            <span class="ico glyphicon glyphicon-stats" ></span>
+            <span class="ico glyphicon glyphicon-sound-stereo" ></span>
+         </div>
+         <div class="col-lg-12 lsummary animated"
+              ng-class="{'fadeIn': !boxFullDisplay, 'fadeInDown' : boxFullDisplay}"
+             ng-hide="boxFullDisplay">
+            7 glyphicon were hidden
+         </div>
+         <div class="col-lg-12 ceb-footer">
+            <span class="ceb-controls col-lg-12" >
+            <span ng-click="boxFullDisplay=!boxFullDisplay" 
+                  class="glyphicon "
+                  ng-class="{'glyphicon-menu-up' :boxFullDisplay, 'glyphicon-menu-down' : !boxFullDisplay, 'enabled': !boxEditMode, 'disabled': boxEditMode }">
+                    </span>
+            <span>
+         </div>
+      </div>
+ 
+
+
+
+
+
 </body>
+
 </html>

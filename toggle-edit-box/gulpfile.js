@@ -9,7 +9,15 @@ var cssFilesDist =  appLoc + "css/" ;
 gulp.task('severWithLessCompile', ['less'], function() {
 
     browserSync.init({
-        server: appLoc
+      server: {
+        baseDir: appLoc,
+        directory: false,
+        index: "index.html",
+        routes: {
+          "/bower_components": "bower_components"
+         }
+      }
+        
     });
 
     gulp.watch(lessFilesSrc, ['less']);
