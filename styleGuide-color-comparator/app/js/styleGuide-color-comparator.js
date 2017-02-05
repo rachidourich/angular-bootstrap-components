@@ -8,12 +8,14 @@ function setAsBackground(){
     document.getElementById('b-container').style.backgroundColor = colorToSet;
 } 
 
-function hideAll(){
-    console.log("hideAll");
+function hideAll(evt){
+    var parent = evt.target.parentNode;
+    parent.style.height = "20px";
 }
 
-function revertHideAll(){
-    console.log('revertHideAll')
+function revertHideAll(evt){
+    var parent = evt.target.parentNode;
+    parent.style.height = "100px";
 }
 
 function loadStyleGuide(){
@@ -33,8 +35,8 @@ for(var i=0 ; i < sgColors.length ; i++)
 {
     var colorRef = sgColors[i].colorRef; 
     var colorCode = sgColors[i].colorCode; 
-    var hide = '<img src="img/hide.png" class="show-hide" onClick="hideAll()"  ></img>'
-    var show = '<img src="img/show.png" class="show-hide" onClick="revertHideAll()" ></img>'
+    var hide = '<img src="img/hide.png" class="show-hide" onClick="hideAll(event)"  ></img>'
+    var show = '<img src="img/show.png" class="show-hide" onClick="revertHideAll(event)" ></img>'
     var showHide = hide + show;
     var colorCollumnB = '<div class="collor-collumn">'+
                             '<div class="col-lg-12" style="background-color:' + colorCode + '">'+
