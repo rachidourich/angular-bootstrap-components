@@ -1,0 +1,28 @@
+{
+  "name": "styleGuide-color-comparator",
+  "namelower": "styleGuide-color-comparator",
+  "version": "0.0.1",
+  "description": "An styleGuide-color-comparator tool",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rachidourich/angular-bootstrap-components.git"
+  },
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-cli": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-less": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-rename": "latest"
+  },
+  "scripts": {
+    "env-dep" : "npm install --verbose", 
+    "dev-dep": "bower install --verbose",
+    "view": "gulp"
+  }
+}
