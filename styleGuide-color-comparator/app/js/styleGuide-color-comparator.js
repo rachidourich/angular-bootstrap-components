@@ -11,11 +11,15 @@ function setAsBackground(){
 function hideAll(evt){
     var parent = evt.target.parentNode;
     parent.style.height = "20px";
+    parent.style.margin = "0px";
+        
 }
 
 function revertHideAll(evt){
     var parent = evt.target.parentNode;
     parent.style.height = "100px";
+    
+    parent.style.margin = "15px";
 }
 
 function loadStyleGuide(){
@@ -35,8 +39,8 @@ for(var i=0 ; i < sgColors.length ; i++)
 {
     var colorRef = sgColors[i].colorRef; 
     var colorCode = sgColors[i].colorCode; 
-    var hide = '<img src="img/hide.png" class="show-hide" onClick="hideAll(event)"  ></img>'
-    var show = '<img src="img/show.png" class="show-hide" onClick="revertHideAll(event)" ></img>'
+    var hide = '<span class="glyphicon glyphicon-menu-up show-hide"  onClick="hideAll(event)"  ></span>'
+    var show = '<span class="glyphicon glyphicon-menu-down show-hide" onClick="revertHideAll(event)" ></span>'
     var showHide = hide + show;
     var colorCollumnB = '<div class="collor-collumn">'+
                             '<div class="col-lg-12" style="background-color:' + colorCode + '">'+
@@ -45,14 +49,14 @@ for(var i=0 ; i < sgColors.length ; i++)
     // add lighten colors
     var lightenRows = "" ;
     for (var j = 0 ;j <= 100 ; j += 1)
-    {
-        lightenRows += '<div class="col-lg-12 color-row lighten-' + colorRef.substr(1,colorRef.length)+'-'+ j + '" > '+ showHide +' lighten( ' + colorRef + ' , ' + j + '% ) </div>';
+    {//+' lighten( ' + colorRef + ' , ' + j + '% )
+        lightenRows += '<div class="col-lg-12 color-row lighten-' + colorRef.substr(1,colorRef.length)+'-'+ j + '" > '+ showHide  +'</div>';
     }
     //add darken colors
     var darkenenRows = "" ;
     for (var j = 0 ;j <= 100 ; j += 1)
-    {
-        darkenenRows += '<div class="col-lg-12 color-row darken-' + colorRef.substr(1,colorRef.length)+'-'+ j + '" >'+ showHide +' darken( ' + colorRef + ' , ' + j + '% ) </div>';
+    {// darken( ' + colorRef + ' , ' + j + '% ) 
+        darkenenRows += '<div class="col-lg-12 color-row darken-' + colorRef.substr(1,colorRef.length)+'-'+ j + '" >'+ showHide +'</div>';
     }
 
                             
