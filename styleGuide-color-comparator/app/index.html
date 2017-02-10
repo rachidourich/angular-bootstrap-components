@@ -1,27 +1,32 @@
-<!doctype html>
 <html>
 
 <head>
-   <title>Collapsable and editable box</title>
+   <title> Comparator </title>
 
-   <link rel="stylesheet" href="css/styleGuide-color-comparator.css">
    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
    <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
-
-   <script src="js/styleGuide-color-comparator.js"></script>
+   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+   <script src="/bower_components/colorspaces/colorspaces.js"></script>
+<script src="/bower_components/delta-e/dist/deltae.global.min.js"></script>
+   <script src="/bower_components/less/dist/less.js"></script>
+   <script src="js/comparator.js"></script>
 
 </head>
+<body>
 
-<body onLoad="loadStyleGuide()">
-
-<div>
-    <img src="img/show-hide.png" />ss
-    Color to match (ex :#FFDDDD) <input type="text" id="colorToBackground"> <input Type="button" value="Set as backround" onClick="setAsBackground()" /> </div>
+<div class="inputs-colors-container row" >
+   <div class="col-lg-6 source-color-box" id="source-color-box" >
+      Source : <input type="text" value="#00965E" id="sourceColor" onkeyup="changeSourceColor(this);" />
+   </div>
+   <div class="col-lg-6 destination-color-box" id ="destination-color-box" >
+      Destination : <input type="text" value="#84d2b5" id="destinationColor" onkeyup="changeDestinationColor(this);" />
+   </div>
 </div>
-<div id="b-container"></div>
-
-
-
+<div class="row" >
+   <div class="col-lg-12" >
+      <input type="button" value="compute function" onClick="computefn();" />
+   </div> 
+</div>
+<div style="border:2px solid black;width:100%; height:100px" id="toColor">
 </body>
-
 </html>

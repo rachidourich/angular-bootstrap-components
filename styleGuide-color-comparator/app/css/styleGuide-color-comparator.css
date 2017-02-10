@@ -14,6 +14,9 @@
   width: 18px;
   cursor: pointer;
 }
+.hidden-element {
+  display: none;
+}
 .lighten-background-0 {
   background-color: #f3f3f3;
 }

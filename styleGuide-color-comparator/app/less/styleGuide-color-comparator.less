@@ -1,5 +1,5 @@
 //style guide colors
-
+/*
 @background : #F3F3F3;
 @brand-color : #00965E;
 @dark-text: #2D2926;
@@ -25,6 +25,9 @@
   //width:20px;
   width: 18px;
   cursor:pointer;
+}
+.hidden-element{
+  display:none;
 }
  
 .generate-lighten-colors(100, background, @background);
@@ -59,4 +62,18 @@
     background-color : darken(@colorToGenerate,@currentIndex);
   }
   .generate-darken-colors(@loopNb, @name, @colorToGenerate, (@currentIndex + 1));
+}
+*/
+.inputs-colors-container{
+  
+  display : inline-block
+  height : 50px
+  
+  .source-color-box{  
+    height : 100%;
+  }
+  
+  .destination-color-box{
+    height : 100%;
+  }
 }

@@ -22,8 +22,6 @@ function revertHideAll(evt){
     parent.style.margin = "15px";
 }
 
-function loadStyleGuide(){
-
 var sgColors = [
                 {'colorRef':'@background','colorCode':'#F3F3F3'},
                 {'colorRef':'@brand-color','colorCode':'#00965E'},
@@ -35,17 +33,24 @@ var sgColors = [
                 {'colorRef':'@disabled','colorCode':'#C8C8C8'}
                ];
 
+var hide = '<span class="glyphicon glyphicon-menu-up show-hide"  onClick="hideAll(event)"  ></span>'
+var show = '<span class="glyphicon glyphicon-menu-down show-hide" onClick="revertHideAll(event)" ></span>'
+var showHide = hide + show;
+
+function loadStyleGuide(){
+
+
+
 for(var i=0 ; i < sgColors.length ; i++)
 {
     var colorRef = sgColors[i].colorRef; 
     var colorCode = sgColors[i].colorCode; 
-    var hide = '<span class="glyphicon glyphicon-menu-up show-hide"  onClick="hideAll(event)"  ></span>'
-    var show = '<span class="glyphicon glyphicon-menu-down show-hide" onClick="revertHideAll(event)" ></span>'
-    var showHide = hide + show;
+   
+   
     var colorCollumnB = '<div class="collor-collumn">'+
                             '<div class="col-lg-12" style="background-color:' + colorCode + '">'+
                                 colorRef +
-                            '</div>';
+                            '</div>';                         
     // add lighten colors
     var lightenRows = "" ;
     for (var j = 0 ;j <= 100 ; j += 1)
@@ -64,6 +69,16 @@ for(var i=0 ; i < sgColors.length ; i++)
     var colorCollumnE = '</div>';
     var content = colorCollumnB + lightenRows + darkenenRows + colorCollumnE ;
     document.getElementById('b-container').innerHTML += content ; 
+
+
+    //hide white and black results
+    $('*').filter(function() {
+    if (this.currentStyle) 
+              return this.currentStyle['background-color'] === '#000000';
+    }).addClass('hidden-element');
+
+
+
 }
 
 };
