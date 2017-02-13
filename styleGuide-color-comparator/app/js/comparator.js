@@ -99,8 +99,12 @@ function searchInStyleGuide(){
    $("#hex-dist").html(colorToSearch); 
    
    //find the best match
-   var bestMatch = 999999; ;
-   var bestMatchIndex = -1;
+   var firstBestMatch = 999999;
+   var secondBestMatch = 999999;
+
+   var firstBestMatchIndex = -1;
+   var secondBestMatchIndex = -1;
+
    var spaceCol = $.colorspaces.make_color('hex', colorToSearch).as('CIELAB');
    var cTarg = {L: spaceCol[0], A: spaceCol[1], B: spaceCol[2]};
      
@@ -112,17 +116,30 @@ function searchInStyleGuide(){
       
       var delta = DeltaE.getDeltaE00(cTarg, cCand);
       console.log(delta);
-      if(delta < bestMatch){
-          bestMatchIndex = index;
-          bestMatch = delta ;
+      if(delta < firstBestMatch){
+          secondBestMatchIndex = firstBestMatchIndex;
+          firstBestMatchIndex = index;
+          secondBestMatch = firstBestMatch;
+          firstBestMatch = delta ;
       }
        
      
       
    });
-   console.log(bestMatch+' -----------> ' + bestMatchIndex+' --> '+lessComputed[bestMatchIndex]);
-   $("#toColor").css('background-color',lessComputed[bestMatchIndex]);
-    $("#toColor").html('<h1>matching score : '+Math.floor(bestMatch)+' <br>-function : '+bestMatchIndex+'   <br>-color : '+lessComputed[bestMatchIndex]+'</h1>')
+   var secondRes = '<div class="col-lg-4  score-result" style="background-color:'+lessComputed[secondBestMatchIndex]+'" >'+
+                        '<span class="col-lg-12"> score:'+Math.floor(secondBestMatch)+'</span>'+
+                        '<span class="col-lg-12">hex : '+lessComputed[secondBestMatchIndex]+'</span>'+
+                        '<span class="col-lg-12">function:'+secondBestMatchIndex+'</span>'+
+                    '</div>'
+    $('#matching-score-results').append(secondRes);
+   
+   var firstRes = '<div class="col-lg-4  score-result" style="background-color:'+lessComputed[firstBestMatchIndex]+'" >'+
+                        '<span class="col-lg-12"> score:'+Math.floor(firstBestMatch)+'</span>'+
+                        '<span class="col-lg-12">hex : '+lessComputed[firstBestMatchIndex]+'</span>'+
+                        '<span class="col-lg-12">function:'+firstBestMatchIndex+'</span>'+
+                    '</div>'
+    $('#matching-score-results').append(firstRes);
+
 
 }
 
