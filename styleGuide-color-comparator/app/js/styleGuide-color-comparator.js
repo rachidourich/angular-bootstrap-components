@@ -45,7 +45,7 @@ for(var i=0 ; i < sgColors.length ; i++)
 {
     var colorRef = sgColors[i].colorRef; 
     var colorCode = sgColors[i].colorCode; 
-   
+    var entry = '<li> <span class="glyphicon glyphicon-fire" ></span> <a href="#">@background</a> </li>';
    
     var colorCollumnB = '<div class="collor-collumn">'+
                             '<div class="col-lg-12" style="background-color:' + colorCode + '">'+

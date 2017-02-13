@@ -9,71 +9,54 @@
 @accent4: #61C56E;
 @disabled: #C8C8C8;
 
-#b-container{
-  width: 5000%;
-}
-.collor-collumn{
-  width:150px;
-  display: inline-block;
-  text-align: center;
-  margin: 1px 15px 1px 15px;
-}
-.color-row{
-    border-top: 1px dotted black;
-}
-.show-hide{
-  //width:20px;
-  width: 18px;
-  cursor:pointer;
-}
-.hidden-element{
-  display:none;
-}
- 
-.generate-lighten-colors(100, background, @background);
-.generate-lighten-colors(100, brand-color, @brand-color);
-.generate-lighten-colors(100, dark-text, @dark-text);
-.generate-lighten-colors(100, grey, @grey);
-.generate-lighten-colors(100, accent2, @accent2);
-.generate-lighten-colors(100, accent3, @accent3);
-.generate-lighten-colors(100, accent4, @accent4);
-.generate-lighten-colors(100, disabled, @disabled);
+            <li><a href="#">@background</a></li>
+            <li><a href="#">@brand-color</a></li>
+            <li><a href="#">@dark-text</a></li>
+            <li><a href="#">@background</a></li>
+            <li><a href="#">@brand-color</a></li>
+            <li><a href="#">@dark-text</a></li>
+            <li><a href="#">@grey</a></li>            
+            <li><a href="#">@accent2</a></li>
+            <li><a href="#">@accent3</a></li>
+            <li><a href="#">@accent4</a></li>
+            <li><a href="#">@disabled</a></li>
 
-
-.generate-darken-colors(100, background, @background);
-.generate-darken-colors(100, brand-color, @brand-color);
-.generate-darken-colors(100, dark-text, @dark-text);
-.generate-darken-colors(100, grey, @grey);
-.generate-darken-colors(100, accent2, @accent2);
-.generate-darken-colors(100, accent3, @accent3);
-.generate-darken-colors(100, accent4, @accent4);
-.generate-darken-colors(100, disabled, @disabled);
-
-
-.generate-lighten-colors(@loopNb,@name, @colorToGenerate, @currentIndex: 0) when (@currentIndex =< @loopNb) {
-  .lighten-@{name}-@{currentIndex} {
-    background-color : lighten(@colorToGenerate,@currentIndex);
-  }
-  .generate-lighten-colors(@loopNb, @name, @colorToGenerate, (@currentIndex + 1));
-}
-
-.generate-darken-colors(@loopNb,@name, @colorToGenerate, @currentIndex: 0) when (@currentIndex =< @loopNb) {
-  .darken-@{name}-@{currentIndex} {
-    background-color : darken(@colorToGenerate,@currentIndex);
-  }
-  .generate-darken-colors(@loopNb, @name, @colorToGenerate, (@currentIndex + 1));
-}
 */
 .inputs-colors-container{
-  
-  display : inline-block
-  height : 50px
-  
-  .source-color-box{  
+  .color-box {  
     height : 100%;
+    text-align: center;
+    .sg-dropdown-entry{
+        border: 1px solid #e2e2e2;
+        border-radius: 4px;
+      > span {
+        width : 15%;
+        font-size: 18px;
+        display:inline-block;
+      }
+      > a {
+        cursor:pointer;
+        width : 85%;
+        font-weight : bold;
+        display:inline-block;
+      }
+    }
+    .color-icon{
+      font-size:10em;
+        padding-top: 15px;
+    }
+    .color-resume{
+      font-weight:bold;
+   
+    }
   }
-  
-  .destination-color-box{
-    height : 100%;
-  }
+  .matching-score-results{
+    border : 1px solid red;
+     
+    .score-result{
+      border:1px solid blue;
+    }
+
 }
+}
+

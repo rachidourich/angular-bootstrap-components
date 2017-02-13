@@ -1,4 +1,4 @@
-
+//define less functions
 var lessLighten = less.functions.functionRegistry.get('lighten');
 var lessDarken = less.functions.functionRegistry.get('darken');
 var lessTint = less.functions.functionRegistry.get('tint');
@@ -6,7 +6,6 @@ var lessSpin = less.functions.functionRegistry.get('spin');
 var lessShade = less.functions.functionRegistry.get('shade');
 var lessGreyscale = less.functions.functionRegistry.get('greyscale');
 var lessContrast = less.functions.functionRegistry.get('contrast');
-
 var Color = less.tree.Color; 
 
 var lighten_fn = "lighten";
@@ -17,59 +16,97 @@ var shade_fn = "shade";
 var greyscale_fn = "greyscale";
 var contrast_fn = "contrast";
 
-var mapComputed;  
+var lessComputed;  
 
-function changeSourceColor(elt){
+
+//prepare the select down list when document is ready
+$( document ).ready(function() {
+
+    var sgC = [
+                {'name':'@background','hex':'#F3F3F3'},
+                {'name':'@brand-color','hex':'#00965E'},
+                {'name':'@dark-text','hex':'#2D2926'},
+                {'name':'@grey','hex':'#5F5F5F'},
+                {'name':'@accent2','hex':'#24B3C7'},
+                {'name':'@accent3','hex':'#62AC31'},
+                {'name':'@accent4','hex':'#61C56E'},
+                {'name':'@disabled','hex':'#C8C8C8'}
+               ];
+
+    for(var i=0 ; i < sgC.length ; i++)
+    {
+        var name = sgC[i].name; 
+        var hex = sgC[i].hex;
+        var fGlyphicon = '<span class="glyphicon glyphicon-fire" style="color:' + hex + '"></span>';
+        var line = '<li class = "sg-dropdown-entry" >' 
+                    + fGlyphicon + 
+                   '<a onclick ="computeLessValues(\'' + hex + '\' , \'' + name + '\')" style="background-color:' + hex + '" >' + name + '</a>' +
+                   '</li>';
+        //document.getElementById("").innerHtml += ;
+        
+        $("#sg-dropDown-colors").append(line);
+        $("#sg-dropdown-label").prepend(fGlyphicon);
+        
+    }
+    $(".dropdown-toggle").dropdown();
+});
+
+
+
+
+
+
+
+
+function computeLessValues(hexColor, name){
    //set it as background
-   var settedColor = elt.value.trim();
-   $("#source-color-box").css('background-color',settedColor);
-   // store lighten function in an array
-   
-   mapComputed = new Object();
+   $("#src-icon").css("color",hexColor); 
+   $("#hex-src").html(hexColor); 
+   $("#less-src-var").html(name);
 
-   //var LessFunctions = []
+   lessComputed = new Object();
 
    for(var i=0 ;i < 100 ; i++)
    {
-      var col = new Color( settedColor.substr(1,settedColor.length));
+      var col = new Color(hexColor.substr(1,7));
 
       var lightened = lessLighten( col , {value:i} );
-      mapComputed[ lighten_fn + '_' + i ] = lightened.toRGB();
+      lessComputed[ lighten_fn + '_' + i ] = lightened.toRGB();
       
       var darkned = lessDarken( col , {value:i} );
-      mapComputed[ darken_fn + '_' + i ] = darkned.toRGB();
+      lessComputed[ darken_fn + '_' + i ] = darkned.toRGB();
 
       var spinned = lessSpin( col , {value:i} );
-      mapComputed[ spin_fn + '_' + i ] = spinned.toRGB();
+      lessComputed[ spin_fn + '_' + i ] = spinned.toRGB();
 
       var tinted = lessTint( col , {value:i} );
-      mapComputed[ tint_fn + '_' + i ] = tinted.toRGB();
+      lessComputed[ tint_fn + '_' + i ] = tinted.toRGB();
 
       var shaded = lessShade( col , {value:i} );
-      mapComputed[ shade_fn + '_' + i ] = shaded.toRGB();
+      lessComputed[ shade_fn + '_' + i ] = shaded.toRGB();
 
       var greyscaled = lessGreyscale( col , {value:i} );
-      mapComputed[ greyscale_fn + '_' + i ] = greyscaled.toRGB();
-
-     //var contrasted = lessContrast( col , {value:i} );
-      //mapComputed[ contrast_fn + '_' + i ] = contrasted.toRGB();
+      lessComputed[ greyscale_fn + '_' + i ] = greyscaled.toRGB();
        
    }
   
 
 }
 
-function changeDestinationColor(elt){
+function searchInStyleGuide(){
+   var colorToSearch = $("#color-to-search").val().trim();
+   $("#dist-icon").css("color",colorToSearch); 
+   $("#hex-dist").html(colorToSearch); 
    
-   $("#destination-color-box").css('background-color',elt.value.trim());
+   //find the best match
    var bestMatch = 999999; ;
    var bestMatchIndex = -1;
-   var spaceCol = $.colorspaces.make_color('hex', elt.value.trim()).as('CIELAB');
+   var spaceCol = $.colorspaces.make_color('hex', colorToSearch).as('CIELAB');
    var cTarg = {L: spaceCol[0], A: spaceCol[1], B: spaceCol[2]};
      
    //look for the nearest color 
    
-   $.each(mapComputed, function(index, hexCand) {
+   $.each(lessComputed, function(index, hexCand) {
       var spaceCT = $.colorspaces.make_color('hex', hexCand).as('CIELAB');
       var cCand = {L: spaceCT[0], A: spaceCT[1], B: spaceCT[2]};     
       
@@ -83,20 +120,9 @@ function changeDestinationColor(elt){
      
       
    });
-   console.log(bestMatch+' -----------> ' + bestMatchIndex+' --> '+mapComputed[bestMatchIndex]);
-   $("#toColor").css('background-color',mapComputed[bestMatchIndex]);
-    $("#toColor").html('<h1>matching score : '+Math.floor(bestMatch)+' <br>-function : '+bestMatchIndex+'   <br>-color : '+mapComputed[bestMatchIndex]+'</h1>')
+   console.log(bestMatch+' -----------> ' + bestMatchIndex+' --> '+lessComputed[bestMatchIndex]);
+   $("#toColor").css('background-color',lessComputed[bestMatchIndex]);
+    $("#toColor").html('<h1>matching score : '+Math.floor(bestMatch)+' <br>-function : '+bestMatchIndex+'   <br>-color : '+lessComputed[bestMatchIndex]+'</h1>')
 
 }
 
-function computefn(){
-   console.log("computing function");
-   mapComputed;
-
-}
-/*
-var d50 = new less.tree.Dimension(50);
-
-var c1 = new Color("000fff");
-var c2 = new Color("ff0000");
-console.log(mix(c1, c2, d50).toRGB());*/

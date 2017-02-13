@@ -4,10 +4,12 @@
    <title> Comparator </title>
 
    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+   <link rel="stylesheet" href="css/styleGuide-color-comparator.css">
    <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
    <script src="/bower_components/colorspaces/colorspaces.js"></script>
-<script src="/bower_components/delta-e/dist/deltae.global.min.js"></script>
+   <script src="/bower_components/delta-e/dist/deltae.global.min.js"></script>
    <script src="/bower_components/less/dist/less.js"></script>
    <script src="js/comparator.js"></script>
 
@@ -15,18 +17,92 @@
 <body>
 
 <div class="inputs-colors-container row" >
-   <div class="col-lg-6 source-color-box" id="source-color-box" >
-      Source : <input type="text" value="#00965E" id="sourceColor" onkeyup="changeSourceColor(this);" />
+   <div class="col-lg-12" >   
+      <div class="col-lg-6 color-box" id="src-color-box" > 
+         <div class="col-lg-12" >
+            <div class="btn-group">
+               <button id="sg-dropdown-label"
+                     type="button" 
+                     class="btn btn-default dropdown-toggle" 
+                     data-toggle="dropdown" 
+                     aria-haspopup="true" 
+                     aria-expanded="false">
+               <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu" id="sg-dropDown-colors">
+                  <!-- style guide colors are injected here -->
+               </ul>
+            </div>
+         </div>
+         <div class="col-lg-12" >
+            <span id="src-icon" class="col-lg-12 color-icon glyphicon glyphicon-fire"> 
+            </span>
+            <div class="color-resume col-lg-12">
+               <span class="col-lg-12">
+                  hex val: <span class="hex-src" id="hex-src"></span>
+               </span>   
+               <span class="col-lg-12">
+                     less var : <span class="less-src-var" id="less-src-var"></span>
+               </span>
+            </div>
+         </div>
+      
+      </div>
+      <div class="col-lg-6 color-box" id="dist-color-box" > 
+         <div class="col-lg-12" >    
+            <div class="input-group">
+               <input type="text" 
+                      class="form-control" 
+                      placeholder="#61C56E..."
+                      id="color-to-search">
+               <span class="input-group-btn">
+                  <button class="btn btn-default" 
+                          type="button"
+                          onClick="searchInStyleGuide()">
+                     Search in style guide 
+                  </button>
+               </span>
+            </div> 
+         </div>
+         <div class="col-lg-12" >
+            <span id="dist-icon" class="col-lg-12 color-icon glyphicon glyphicon-fire"> 
+            </span>
+            <div class="color-resume col-lg-12">
+               <span class="col-lg-12">
+                  hex val: <span class="hex-dist" id="hex-dist"></span>
+               </span>   
+               <span class="col-lg-12">
+                     less var : <span class="less-dist-var" id="less-dist-var"></span>
+               </span>
+            </div>
+         </div>
+      </div>
    </div>
-   <div class="col-lg-6 destination-color-box" id ="destination-color-box" >
-      Destination : <input type="text" value="#84d2b5" id="destinationColor" onkeyup="changeDestinationColor(this);" />
+
+<div class="col-lg-12 matching-score-results">
+   <div class="col-lg-4 score-result">
+      <span class="col-lg-12"> score:</span>
+      <span class="col-lg-12">hex : </span>
+      <span class="col-lg-12">function:</span>
+   </div>
+   <div class="col-lg-4  score-result">
+         <span class="col-lg-12"> score:</span>
+      <span class="col-lg-12">hex : </span>
+      <span class="col-lg-12">function:</span>
+   </div>
+   <div class="col-lg-4  score-result">
+         <span class="col-lg-12"> score:</span>
+      <span class="col-lg-12">hex : </span>
+      <span class="col-lg-12">function:</span>
    </div>
 </div>
-<div class="row" >
-   <div class="col-lg-12" >
-      <input type="button" value="compute function" onClick="computefn();" />
-   </div> 
+
 </div>
+
+
+
+
+
 <div style="border:2px solid black;width:100%; height:100px" id="toColor">
 </body>
 </html>
