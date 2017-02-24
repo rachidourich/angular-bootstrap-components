@@ -1,63 +1,82 @@
-<!doctype html>
 <html>
 
 <head>
-   <title>Collapsable and editable box</title>
+    <title> Comparator </title>
 
-   <link rel="stylesheet" href="css/collapse-edit-box.css">
-   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-   <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
-
-   <script src="/bower_components/angular/angular.js"></script>
-   <script src="js/collapse-edit-box.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/color-comparator.css">
+    <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/colorspaces/colorspaces.js"></script>
+    <script src="/bower_components/delta-e/dist/deltae.global.min.js"></script>
+    <script src="/bower_components/less/dist/less.js"></script>
+    <script src="js/color-comparator.js"></script>
 
 </head>
 
-<body ng-app="collapseEditBoxApp" ng-controller="collapseEditBoxController">
+<body style="background-color: #bec0c2">
 
+    <div class=" inputs-colors-container">
 
-   <div ng-init="boxFullDisplay = true" ></div>
-   <div ng-init="boxEditMode = false" ></div>
-
-      <div class="col-lg-12 collapse-edit-box">
-         <div class="ceb-header">
-            <span class="col-lg-11"><h4>Collapse edit box</h4></span>
-            <span class="col-lg-1 ceb-controls ">
-               <span class="glyphicon" ng-class="boxEditMode ? 'glyphicon-circle-arrow-left' : 'glyphicon-edit'"
-                ng-click="boxEditMode=!boxEditMode; boxFullDisplay=true" />
+        <div class="col-lg-6 color-box" id="src-color-box">
+            <div class="col-lg-12">
+                <div class="btn-group">
+                    <button id="sg-dropdown-label" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <span class="caret"></span>
+               </button>
+                    <ul class="dropdown-menu" id="sg-dropDown-colors">
+                        <!-- style guide colors are injected here -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <span id="src-icon" class="col-lg-12 color-icon glyphicon glyphicon-globe"> 
             </span>
-         </div>
-         <div class="col-lg-12 lbody animated" 
-         ng-class="{'fadeIn': boxFullDisplay, 'fadeInDown' : !boxFullDisplay}"
-         ng-show="boxFullDisplay" >
-            <span class="ico glyphicon glyphicon-bell" ></span>
-            <span class="ico glyphicon glyphicon-tasks" ></span>
-            <span class="ico glyphicon glyphicon-usd" ></span>
-            <span class="ico glyphicon glyphicon-sort-by-attributes-alt" ></span>
-            <span class="ico glyphicon glyphicon-floppy-disk" ></span>
-            <span class="ico glyphicon glyphicon-stats" ></span>
-            <span class="ico glyphicon glyphicon-sound-stereo" ></span>
-         </div>
-         <div class="col-lg-12 lsummary animated"
-              ng-class="{'fadeIn': !boxFullDisplay, 'fadeInDown' : boxFullDisplay}"
-             ng-hide="boxFullDisplay">
-            7 glyphicon were hidden
-         </div>
-         <div class="col-lg-12 ceb-footer">
-            <span class="ceb-controls col-lg-12" >
-            <span ng-click="boxFullDisplay=!boxFullDisplay" 
-                  class="glyphicon "
-                  ng-class="{'glyphicon-menu-up' :boxFullDisplay, 'glyphicon-menu-down' : !boxFullDisplay, 'enabled': !boxEditMode, 'disabled': boxEditMode }">
+                <div class="color-resume col-lg-12">
+                    <span class="col-lg-12">
+                  hex val: <span class="hex-src" id="hex-src"></span>
                     </span>
-            <span>
-         </div>
-      </div>
- 
+                    <span class="col-lg-12">
+                     less var : <span class="less-src-var" id="less-src-var"></span>
+                    </span>
+                </div>
+                
+            </div>
 
+        </div>
 
+        <div class="col-lg-6 color-box" id="dist-color-box">
+            <div class="col-lg-12">
 
+                <input type="text" class="color-to-search form-control" placeholder="#61C56E..." value="" id="color-to-search">
+                <input type="color" class="btn btn-default color-picker" onchange="pickColor(this.value)" value="#000000" name="textcolor">
+                <button type="button" class="btn btn-default" onClick="searchInStyleGuide()">
+                     GO
+                </button>
+            </div>
+            <div class="col-lg-12">
+                <span id="dist-icon" class="col-lg-12 color-icon glyphicon glyphicon-globe"> 
+            </span>
+                <div class="color-resume col-lg-12">
+                    <span class="col-lg-12">
+                  hex val: <span class="hex-dist" id="hex-dist"></span>
+                    </span>
+                    <span class="col-lg-12">
+                    
+               </span>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-lg-12 computed-functions" >
+              <div class="col-lg-12 degraded-score-results" id="degraded-score-results">
 
+              </div>
+             <div class="col-lg-12 computed-functions" id="matching-score-results">
+
+              </div>
+        </div>
+    </div>
 </body>
-
 </html>
