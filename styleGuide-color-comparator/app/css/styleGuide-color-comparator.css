@@ -1,0 +1,55 @@
+/*
+@background : #F3F3F3;
+@brand-color : #00965E;
+@dark-text: #2D2926;
+@grey: #5F5F5F;
+@accent2: #24B3C7;
+@accent3: #62AC31;
+@accent4: #61C56E;
+@disabled: #C8C8C8;
+
+            <li><a href="#">@background</a></li>
+            <li><a href="#">@brand-color</a></li>
+            <li><a href="#">@dark-text</a></li>
+            <li><a href="#">@background</a></li>
+            <li><a href="#">@brand-color</a></li>
+            <li><a href="#">@dark-text</a></li>
+            <li><a href="#">@grey</a></li>            
+            <li><a href="#">@accent2</a></li>
+            <li><a href="#">@accent3</a></li>
+            <li><a href="#">@accent4</a></li>
+            <li><a href="#">@disabled</a></li>
+
+*/
+.inputs-colors-container .color-box {
+  height: 100%;
+  text-align: center;
+}
+.inputs-colors-container .color-box .sg-dropdown-entry {
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+}
+.inputs-colors-container .color-box .sg-dropdown-entry > span {
+  width: 15%;
+  font-size: 18px;
+  display: inline-block;
+}
+.inputs-colors-container .color-box .sg-dropdown-entry > a {
+  cursor: pointer;
+  width: 85%;
+  font-weight: bold;
+  display: inline-block;
+}
+.inputs-colors-container .color-box .color-icon {
+  font-size: 10em;
+  padding-top: 15px;
+}
+.inputs-colors-container .color-box .color-resume {
+  font-weight: bold;
+}
+.inputs-colors-container .matching-score-results {
+  border: 1px solid red;
+}
+.inputs-colors-container .matching-score-results .score-result {
+  border: 1px solid blue;
+}
